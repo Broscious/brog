@@ -1,0 +1,9 @@
+<span>$ ls ~/recent_blog_posts</span>
+<br />
+<ul>
+{{ range first 5 (where .Site.RegularPages "Type" "blog_post") }}
+    <li><a href="{{ .Permalink }}"><span class="active">{{ .Title }}</span></a></li>
+    <br />
+{{ end }}
+</ul>
+<span>$ ^C</span>
