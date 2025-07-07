@@ -2,7 +2,7 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'evbros'
 #theme = 'ananke'
-theme = 'risotto'
+theme = 'risotto-0.4.0'
 
 author = "Evan Broscious"
 DefaultContentLanguage = "en"
@@ -107,6 +107,5 @@ unsafe = true
   [services.x]
     disableInlineCSS = true
 
-[caches]
   [caches.images]
     dir = ':cacheDir/images'

@@ -33,14 +33,15 @@ jobs:
     env:
       HUGO_VERSION: 0.147.9
       HUGO_ENVIRONMENT: production
+      RISOTTO_VERSION: 0.4.0
       TZ: America/Los_Angeles
     steps:
       - name: Install Hugo CLI
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
-      - name: Install Dart Sass
-        run: sudo snap install dart-sass
+      # - name: Install Dart Sass
+      #   run: sudo snap install dart-sass
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -62,7 +63,11 @@ jobs:
             hugo-
       - name: Configure Git
         run: git config core.quotepath false
-      - name: Build with Hugo # TODO figure out how to add the theme
+      - name: Setup Risotto theme
+        run: |
+          wget -O ${{ runner.temp }}/risotto.tar.gz https://github.com/joeroe/risotto/archive/refs/tags/v${RISOTTO_VERSION}.tar.gz \
+          && tar -xvzf ${{ rrunner.temp }}/risotto.tar.gz -C themes
+      - name: Build with Hugo
         run: |
           hugo \
             --gc \
