@@ -67,7 +67,7 @@ jobs:
       # wget -O ${{ runner.temp }}/risotto.tar.gz https://github.com/joeroe/risotto/archive/refs/tags/v${RISOTTO_VERSION}.tar.gz \
       - name: Setup Risotto theme
         run: |
-          wget -O ${{ runner.temp }}/risotto.tar.gz https://github.com/joeroe/risotto/archive/refs/heads/main.tar.gz
+          wget -O ${{ runner.temp }}/risotto.tar.gz https://github.com/joeroe/risotto/archive/refs/heads/main.tar.gz \
           && tar -xvzf ${{ runner.temp }}/risotto.tar.gz -C themes
       - name: Build with Hugo
         run: |
