@@ -2,7 +2,7 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'evbros'
 #theme = 'ananke'
-theme = 'risotto-0.4.0'
+theme = 'risotto-main'
 
 author = "Evan Broscious"
 DefaultContentLanguage = "en"
@@ -30,7 +30,6 @@ palette = "base16-dark"
 title = "broscious"
 description = "Humble opinion merchant"
 # unicode/emoji logo:
-#logo = "🥌"
 logo = "🎞️🎞️️🎞️"
 # or use an image:
 #logo_image = "images/rice.svg"
