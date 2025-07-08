@@ -1,9 +1,9 @@
-<span>$ ls ~/recent_blog_posts</span>
+<span>$ ls -l ~/recent_blog_posts</span>
 <br />
 <ul>
 {{ range first 5 (where .Site.RegularPages "Type" "blog_post") }}
-    <li><a href="{{ .Permalink }}"><span class="active">{{ .Title }}</span></a></li>
+    <li>-rw-r--r-- 1 evbros evbros {{ .WordCount }} {{ .Date.Format " Jan 1  2006"}} <a href="{{ .Permalink }}"><span class="active">{{ .Title }}</span></a></li>
     <br />
 {{ end }}
 </ul>
-<span>$ ^C</span>
+<span>$ ^D</span>
