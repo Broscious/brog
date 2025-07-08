@@ -1,0 +1,16 @@
+{{ define "main" }}
+    <h1 id="{{ .Title | urlize }}">ls -l {{ strings.ToLower .Title | markdownify }}</h1>
+
+    {{ .Content }}
+
+    <ul>
+    {{ range .Pages }}
+        {{ .Render "li" }}
+    {{ end }}
+    </ul>
+
+{{ end }}
+
+{{define "aside" }}
+    {{ if .Params.description }}<p>{{ .Params.description }}</p>{{ end }}
+{{ end }}
