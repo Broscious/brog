@@ -2,7 +2,7 @@
     <h1 id="{{ .Title | urlize }}">ls -l {{ strings.ToLower .Title | markdownify }}</h1>
 
     {{ .Content }}
-
+    <span>total {{ .Pages | len }}</span>
     <ul>
     {{ range .Pages }}
         {{ .Render "li" }}
