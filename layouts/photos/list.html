@@ -6,8 +6,14 @@
         {{ $image := .Resources.GetMatch "*{jpg,png,jpeg}*" }}
         <a href="{{ .Permalink }}">
           {{ with $image }}
-            {{ $square := .Fill "600x600 Center" }}
-            <img src="{{ $square.RelPermalink }}" alt="{{ $.Title }}">
+            {{/* Generate WebP for smaller files */}}
+            {{ $webp := .Fill "600x600 Center webp q80" }}
+
+            {{ $fallback := .Fill "600x600 Center" }}
+            <picture>
+                <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+                <img src="{{ $fallback.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+            </picture>
           {{ end }}
         </a>
       </div>

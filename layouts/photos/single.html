@@ -10,17 +10,13 @@
     {{ $image := .Resources.GetMatch "*{jpg,png,jpeg}*" }}
     
     {{ with $image }}
-    {{/* Generate AVIF for modern browsers */}}
-    {{ $avif := .Resize "1200x avif q80" }}
-    
-    {{/* Generate WebP for everyone else */}}
+    {{/* Generate WebP for smaller files */}}
     {{ $webp := .Resize "1200x webp q80" }}
     
     {{/* Fallback to the resized original */}}
     {{ $fallback := .Resize "1200x" }}
     <a href="#lightbox" title="Click to view full size">
         <picture>
-            <source srcset="{{ $avif.RelPermalink }}" type="image/avif">
             <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
             <img src="{{ $fallback.RelPermalink }}" alt="{{ $.Title }}" class="main-photo" loading="lazy">
         </picture>
