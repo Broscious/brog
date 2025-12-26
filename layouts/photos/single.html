@@ -3,26 +3,36 @@
   
   <header class="photo-header">
     <h1 class="photo-title">{{ .Title }}</h1>
-    <time class="photo-date">{{ .Date.Format "January 2, 2006" }}</time>
+    <time class="photo-date">{{ .Date.Format "Jan 2 2006" }}</time>
   </header>
 
   <div class="photo-display">
     {{ $image := .Resources.GetMatch "*{jpg,png,jpeg}*" }}
     
     {{ with $image }}
-      {{ $large := .Resize "1400x" }}
-      
-      <a href="#lightbox" title="Click to view full size">
-        <img src="{{ $large.RelPermalink }}" alt="{{ $.Title }}" class="main-photo">
-      </a>
-
-      <div id="lightbox" class="lightbox-overlay">
+    {{/* Generate AVIF for modern browsers */}}
+    {{ $avif := .Resize "1200x avif q80" }}
+    
+    {{/* Generate WebP for everyone else */}}
+    {{ $webp := .Resize "1200x webp q80" }}
+    
+    {{/* Fallback to the resized original */}}
+    {{ $fallback := .Resize "1200x" }}
+    <a href="#lightbox" title="Click to view full size">
+        <picture>
+            <source srcset="{{ $avif.RelPermalink }}" type="image/avif">
+            <source srcset="{{ $webp.RelPermalink }}" type="image/webp">
+            <img src="{{ $fallback.RelPermalink }}" alt="{{ $.Title }}" class="main-photo" loading="lazy">
+        </picture>
+    </a>
+ 
+    <div id="lightbox" class="lightbox-overlay">
         <a href="#" class="lightbox-close"></a>
         <div class="lightbox-content">
-          <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
-          <a href="#" class="close-button">&times;</a>
+            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+            <a href="#" class="close-button">&times;</a>
         </div>
-      </div>
+    </div>
     {{ end }}
   </div>
 
