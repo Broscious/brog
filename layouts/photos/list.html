@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <div class="photo-grid">
+    {{ range .Pages }}
+      <div class="photo-item">
+        {{/* Get the image from the Page Bundle */}}
+        {{ $image := .Resources.GetMatch "*{jpg,png,jpeg}*" }}
+        <a href="{{ .Permalink }}">
+          {{ with $image }}
+            {{ $square := .Fill "600x600 Center" }}
+            <img src="{{ $square.RelPermalink }}" alt="{{ $.Title }}">
+          {{ end }}
+        </a>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,0 +1,101 @@
+/* Page Layout */
+.photo-single-container { 
+  max-width: 900px; 
+  margin: 0 auto; 
+  padding: 20px; 
+}
+
+.photo-header { 
+  margin-bottom: 1rem; 
+}
+
+.main-photo { 
+  max-width: 100%; 
+  height: auto; 
+  cursor: zoom-in; 
+}
+
+/* Lightbox Core Styling */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-overlay:target {
+  display: flex;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-out;
+}
+
+.close-button {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  font-size: 40px;
+  text-decoration: none;
+}
+
+/* Tags Styling */
+.post-tags a { 
+  text-decoration: none; 
+}
+
+
+/* Photo grid (list) Styling */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+  gap: 15px;
+}
+
+.photo-item {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #eee;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.photo-item img:hover {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .photo-grid { grid-template-columns: 1fr; }
+}

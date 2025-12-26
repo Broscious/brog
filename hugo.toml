@@ -64,7 +64,6 @@ url = "https://www.linkedin.com/in/evan-broscious/"
 [taxonomies]
 category = "categories"
 tag = "tags"
-series = "series"
 
 # For hugo >= 0.60.0, enable inline HTML
 [markup.goldmark.renderer]

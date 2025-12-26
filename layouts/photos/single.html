@@ -1,0 +1,47 @@
+{{ define "main" }}
+<article class="photo-single-container">
+  
+  <header class="photo-header">
+    <h1 class="photo-title">{{ .Title }}</h1>
+    <time class="photo-date">{{ .Date.Format "January 2, 2006" }}</time>
+  </header>
+
+  <div class="photo-display">
+    {{ $image := .Resources.GetMatch "*{jpg,png,jpeg}*" }}
+    
+    {{ with $image }}
+      {{ $large := .Resize "1400x" }}
+      
+      <a href="#lightbox" title="Click to view full size">
+        <img src="{{ $large.RelPermalink }}" alt="{{ $.Title }}" class="main-photo">
+      </a>
+
+      <div id="lightbox" class="lightbox-overlay">
+        <a href="#" class="lightbox-close"></a>
+        <div class="lightbox-content">
+          <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+          <a href="#" class="close-button">&times;</a>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+
+  <div class="photo-content">
+    {{ .Content }}
+  </div>
+
+  <footer class="photo-footer">
+    {{ if .Params.tags }}
+      <div class="tags-container">
+        <ul class="post-tags">
+          {{ range .Params.tags }}
+            {{ $href := print "/tags/" ( . | urlize ) | relURL }}
+            <li><a href="{{ $href }}">#{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  </footer>
+
+</article>
+{{ end }}
