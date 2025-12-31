@@ -71,7 +71,7 @@
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
-  gap: 15px;
+  gap: 5px;
 }
 
 .photo-item {
