@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="photo-single-container">
   
-  <header class="photo-header">
+  <header class="top-header">
     <h1 class="photo-title">{{ .Title }}</h1>
     <time class="photo-date">{{ .Date.Format "Jan 2 2006" }}</time>
   </header>
@@ -37,16 +37,14 @@
   </div>
 
   <footer class="photo-footer">
-    {{ if .Params.tags }}
-      <div class="tags-container">
-        <ul class="post-tags">
-          {{ range .Params.tags }}
-            {{ $href := print "/tags/" ( . | urlize ) | relURL }}
-            <li><a href="{{ $href }}">#{{ . }}</a></li>
-          {{ end }}
-        </ul>
-      </div>
-    {{ end }}
+    <div class="tags-container">
+      <ul class="post-tags">
+      {{ range .GetTerms "tags" }}
+        {{ $photoLink := .OutputFormats.Get "photogrid" }}
+        <li><a href="{{ $photoLink.RelPermalink }}">#{{ .LinkTitle }}</a></li>
+      {{ end }}
+      </ul>
+    </div>
   </footer>
 
 </article>

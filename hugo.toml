@@ -107,3 +107,12 @@ unsafe = true
 
   [caches.images]
     dir = ':cacheDir/images'
+
+[outputFormats.photogrid]
+  name = "photogrid"
+  baseName = "index-photo"
+  mediaType = "text/html"
+  isHTML = true
+  
+[outputs]
+  term = ["HTML", "photogrid"]
